@@ -6,7 +6,8 @@
     <div id="heading-container">
       <div>
         <h1>
-          <Typewriter />
+          <!-- <Typewriter /> -->
+          COMING 2021
         </h1>
         <h4>Just you wait.</h4>
       </div>
@@ -25,7 +26,7 @@
 <script>
 // Import components
 import ProgressPrideNetwork from "./components/ProgressPrideNetwork/ProgressPrideNetwork.vue";
-import Typewriter from "./components/Typewriter/Typewriter.vue";
+// import Typewriter from "./components/Typewriter/Typewriter.vue";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
 
@@ -36,7 +37,7 @@ export default {
   name: "#ThisIsTurnUp",
   components: {
     ProgressPrideNetwork,
-    Typewriter,
+    // Typewriter,
   },
   title: "#ThisIsTurnUp",
 };
