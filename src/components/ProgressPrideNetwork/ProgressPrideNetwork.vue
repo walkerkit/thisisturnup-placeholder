@@ -1,9 +1,9 @@
 <template>
-    <canvas ref="canvas" />
+  <canvas ref="canvas" />
 </template>
 <script>
-const geometric = require('geometric');
-const d3 = require('d3-random');
+const geometric = require("geometric");
+const d3 = require("d3-random");
 
 class Simulation {
   init(opts) {
@@ -36,10 +36,10 @@ class Simulation {
         d0.collided = false;
         // Collision!
         if (
-          i !== i0
-          && geometric.lineLength([d.pos, d0.pos]) < d.radius + d0.radius
-          && !d.collided
-          && !d0.collided
+          i !== i0 &&
+          geometric.lineLength([d.pos, d0.pos]) < d.radius + d0.radius &&
+          !d.collided &&
+          !d0.collided
         ) {
           // To avoid having them stick to each other,
           // test if moving them in each other's angles will bring them closer or farther apart
@@ -66,15 +66,17 @@ class Simulation {
         }
       }
       // Detect sides
-      const wallVertical = d.pos[0] <= d.radius || d.pos[0] >= this.width - d.radius;
-      const wallHorizontal = d.pos[1] <= d.radius || d.pos[1] >= this.height - d.radius;
+      const wallVertical =
+        d.pos[0] <= d.radius || d.pos[0] >= this.width - d.radius;
+      const wallHorizontal =
+        d.pos[1] <= d.radius || d.pos[1] >= this.height - d.radius;
       if (wallVertical || wallHorizontal) {
         // Is it moving more towards the middle or away from it?
         const t0 = geometric.pointTranslate(d.pos, d.angle, d.speed);
         const l0 = geometric.lineLength([this.center, t0]);
         const reflected = geometric.angleReflect(
           d.angle,
-          wallVertical ? 90 : 0,
+          wallVertical ? 90 : 0
         );
         const t1 = geometric.pointTranslate(d.pos, reflected, d.speed);
         const l1 = geometric.lineLength([this.center, t1]);
@@ -93,8 +95,12 @@ class Simulation {
       remainderList = remainderList.slice(1);
       let distanceList = [];
       for (let j = 0; j < remainderList.length; j += 1) {
-        const xdiff = Math.abs(tempNode.pos[0] - this.nodeData[remainderList[j]].pos[0])**2 ; //eslint-disable-line
-        const ydiff = Math.abs(tempNode.pos[1] - this.nodeData[remainderList[j]].pos[1])**2; // eslint-disable-line
+        const xdiff =
+          Math.abs(tempNode.pos[0] - this.nodeData[remainderList[j]].pos[0]) **
+          2; //eslint-disable-line
+        const ydiff =
+          Math.abs(tempNode.pos[1] - this.nodeData[remainderList[j]].pos[1]) **
+          2; // eslint-disable-line
         const distance = Math.sqrt(xdiff + ydiff);
         distanceList.push([this.nodeData[remainderList[j]].index, distance]);
       }
@@ -108,31 +114,17 @@ class Simulation {
       }
 
       for (let l = 0; l < lineList.length; l += 1) {
-        this.addLine(
-          {
-            node1: tempNode.index,
-            node2: lineList[l][0],
-          },
-        );
+        this.addLine({
+          node1: tempNode.index,
+          node2: lineList[l][0],
+        });
       }
     } while (remainderList.length > interConnectCount);
   }
 }
-const colourValues = [
-  '#EE3123',
-  '#F57F2A',
-  '#FFF001',
-  '#59B947',
-  '#0054A7',
-  '#A0238F',
-  '#000000',
-  '#613917',
-  '#7CC1E9',
-  '#F398C0',
-  '#FFFFFF',
-];
+
 function animationTick(ctx, network, canvas) {
-// function animationTick(ctx, network) {
+  // function animationTick(ctx, network) {
   requestAnimationFrame(() => animationTick(ctx, network, canvas));
   ctx.clearRect(0, 0, network.width, network.height);
   // The simulation.tick method advances the simulation one tick
@@ -141,7 +133,7 @@ function animationTick(ctx, network, canvas) {
     const nodeOne = network.nodeData[network.lineData[i].node1];
     const nodeTwo = network.nodeData[network.lineData[i].node2];
     ctx.beginPath();
-    ctx.strokeStyle = '#333'; // eslint-disable-line no-param-reassign
+    ctx.strokeStyle = "#333"; // eslint-disable-line no-param-reassign
     ctx.moveTo(nodeOne.pos[0], nodeOne.pos[1]);
     ctx.lineTo(nodeTwo.pos[0], nodeTwo.pos[1]);
     ctx.stroke();
@@ -150,25 +142,25 @@ function animationTick(ctx, network, canvas) {
     const d = network.nodeData[i];
     ctx.beginPath();
     ctx.arc(d.pos[0], d.pos[1], d.radius, 0, 2 * Math.PI);
-    ctx.fillStyle = colourValues[d.colour]; // eslint-disable-line no-param-reassign
+    ctx.fillStyle = d.colour; // eslint-disable-line no-param-reassign
     ctx.fill();
   }
 }
 
 export default {
-  name: 'ProgressPrideNetwork',
+  name: "ProgressPrideNetwork",
   created() {
-    window.addEventListener('resize', this.windowResize);
+    window.addEventListener("resize", this.windowResize);
   },
   destroyed() {
-    window.removeEventListener('resize', this.windowResize);
+    window.removeEventListener("resize", this.windowResize);
   },
   mounted() {
     this.network = this.networkInit();
     this.$refs.canvas.width = this.network.width;
     this.$refs.canvas.height = this.network.height;
-    this.$refs.canvas.style.background = '#202329';
-    const ctx = this.$refs.canvas.getContext('2d');
+    this.$refs.canvas.style.background = "#000";
+    const ctx = this.$refs.canvas.getContext("2d");
     animationTick(ctx, this.network, this.$refs.canvas);
   },
   data() {
@@ -189,7 +181,7 @@ export default {
         // Add a circle to your simulation with simulation.add
         network.addNode({
           index: i,
-          colour: d3.randomInt(0, 10)(),
+          colour: "#FFF",
           speed: d3.randomUniform(1.5, 2)(),
           angle: d3.randomUniform(0, 360)(),
           pos: [

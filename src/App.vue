@@ -8,6 +8,7 @@
         <h1>
           <Typewriter />
         </h1>
+        <h4>Just you wait.</h4>
       </div>
     </div>
   </div>
