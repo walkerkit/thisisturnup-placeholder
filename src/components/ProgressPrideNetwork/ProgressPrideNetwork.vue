@@ -151,9 +151,11 @@ export default {
   name: "ProgressPrideNetwork",
   created() {
     window.addEventListener("resize", this.windowResize);
+    window.addEventListener("orientationchange", this.windowResize);
   },
   destroyed() {
     window.removeEventListener("resize", this.windowResize);
+    window.removeEventListener("orientationchange", this.windowResize);
   },
   mounted() {
     this.network = this.networkInit();
