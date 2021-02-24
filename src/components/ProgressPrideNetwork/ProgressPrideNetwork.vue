@@ -177,7 +177,7 @@ export default {
       const count = Math.floor(pixelCount / (Math.sqrt(pixelCount) * 15));
 
       for (let i = 0; i < count; i += 1) {
-        const radius = d3.randomUniform(2, 5)();
+        const radius = d3.randomUniform(1.5, 5)();
         // Add a circle to your simulation with simulation.add
         network.addNode({
           index: i,

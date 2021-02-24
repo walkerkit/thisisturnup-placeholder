@@ -47,3 +47,25 @@ body {
     }
   }
 }
+#footer-container {
+  position: absolute;
+  bottom: 0;
+  padding: 3vh;
+  box-sizing: border-box;
+  color: #fff;
+  text-align: center;
+  width: 100vw;
+  z-index: 2;
+  a {
+    &:visited {
+      color: #fff;
+    }
+  }
+  svg {
+    margin: 0.5%;
+    cursor: pointer;
+    &:hover {
+      color: #888;
+    }
+  }
+}
