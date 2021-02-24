@@ -9,7 +9,7 @@
           <!-- <Typewriter /> -->
           COMING 2021
         </h1>
-        <h4>Just you wait.</h4>
+        <h4>#ThisIsTurnUp</h4>
       </div>
     </div>
     <div id="footer-container">
